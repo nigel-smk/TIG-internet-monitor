@@ -1,0 +1,1 @@
+- create a custom dockerfile for influx that creates a new database with a user
