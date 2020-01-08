@@ -5,6 +5,7 @@ services:
     container_name: influxdb
     volumes:
       - ./influxdb/data:/config
+      - ./influxdb/queries:/queries
     restart: unless-stopped # what are other restart options?
     ports:
       - "8086:8086"
@@ -13,11 +14,13 @@ services:
     image: telegraf
     container_name: telegraf
     volumes: 
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro # what is ro?
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro # what is ro?
     restart: unless-stopped # what are other restart options?
 
   grafana:
     image: grafana/grafana
     container_name: grafana
+    volumes:
+      - ./grafana/data:/var/lib/grafana
     ports:
       - "3000:3000"
